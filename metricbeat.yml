@@ -7,8 +7,8 @@ metricbeat.modules:
   xpack.enabled: true
   period: 10s
   hosts: ${ELASTIC_HOSTS}
-  username: ${ELASTIC_USER}
-  password: ${ELASTIC_PASSWORD}
+  username: "metricbeat_setup"
+  password: ${BEAT_PASS}
   ssl:
     enabled: true
     certificate_authorities: ${CA_CERT}
@@ -23,8 +23,8 @@ metricbeat.modules:
     - stats
   period: 10s
   hosts: ${KIBANA_HOSTS}
-  username: ${ELASTIC_USER}
-  password: ${ELASTIC_PASSWORD}
+  username: "metricbeat_setup"
+  password: ${BEAT_PASS}
   xpack.enabled: true
   ssl:
     enabled: true
@@ -50,8 +50,8 @@ processors:
 
 output.elasticsearch:
   hosts: ${ELASTIC_HOSTS}
-  username: ${ELASTIC_USER}
-  password: ${ELASTIC_PASSWORD}
+  username: "metricbeat_setup"
+  password: ${BEAT_PASS}
   ssl:
     enabled: true
     certificate_authorities: ${CA_CERT}

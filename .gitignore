@@ -7,3 +7,8 @@ elastic-stack-docker-part-two.wg
 .gitignore
 new-arch.excalidraw
 base-arch.excalidraw
+keystore
+filebeat_ingest_data/test*
+logstash_ingest_data/test*
+env-initial
+env-test

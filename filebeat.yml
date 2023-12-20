@@ -14,13 +14,13 @@ processors:
 
 setup.kibana:
   host: ${KIBANA_HOSTS}
-  username: ${ELASTIC_USER}
-  password: ${ELASTIC_PASSWORD} 
+  username: "filebeat_setup"
+  password: ${BEAT_PASS}
 
 output.elasticsearch:
   hosts: ${ELASTIC_HOSTS}
-  username: ${ELASTIC_USER}
-  password: ${ELASTIC_PASSWORD}
+  username: "filebeat_setup"
+  password: ${BEAT_PASS}
   ssl:
     enabled: true
     certificate_authorities: ${CA_CERT}
