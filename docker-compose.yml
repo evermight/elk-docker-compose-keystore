@@ -300,7 +300,7 @@ services:
         /usr/share/elastic-agent/fleet-server-setup.sh -h https://es01:9200 -u elastic -p $ELASTIC_PASSWORD -m "email@email.com" -a $APM_USER -t $APM_PASS
       '
     healthcheck:
-      test: ["CMD-SHELL", "[ -f /usr/share/elastic-agent/keystore/elastic-agent.keystore ]"]
+      test: ["CMD-SHELL", "[ -f /usr/share/elastic-agent/keystore/elastic-agent.initialized ]"]
       interval: 1s
       timeout: 5s
       retries: 240

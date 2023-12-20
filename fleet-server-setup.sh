@@ -47,7 +47,7 @@ fi
 
 username=$APM_USER
 userpass=$APM_PASS
-if [ ! -f /usr/share/elastic-agent/keystore/elastic-agent.keystore ]; then
+if [ ! -f /usr/share/elastic-agent/keystore/elastic-agent.initialized ]; then
 
   curl -X POST $ELASTIC_HOST/_security/user/$username \
     --cacert /usr/share/elastic-agent/certs/ca/ca.crt \
@@ -55,12 +55,7 @@ if [ ! -f /usr/share/elastic-agent/keystore/elastic-agent.keystore ]; then
     -H "Content-Type: application/json" \
     -d '{"password" : "'"$userpass"'","roles" : ["superuser"],"full_name" : "'"$username"'","email" : "'"$USER_EMAIL"'","metadata" : {}}';
 
-#  export LOGSTASH_KEYSTORE_PASS=ABCD1234
-#  echo "y" | /usr/share/elastic-agent/bin/logstash-keystore create;
-#  echo $userpass | /usr/share/elastic-agent/bin/logstash-keystore add OUTPUT_PASS
-#  cp /usr/share/elastic-agent/config/elastic-agent.keystore /usr/share/elastic-agent/keystore/elastic-agent.keystore
-# chmod 777 /usr/share/elastic-agent/keystore/elastic-agent.keystore;
-echo "test" > /usr/share/elastic-agent/keystore/elastic-agent.keystore;
+  echo "initialized" > /usr/share/elastic-agent/keystore/elastic-agent.initialized;
 fi;
 echo "All done!";
 sleep 60;
