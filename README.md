@@ -1,38 +1,27 @@
-# Getting started with the Elastic Stack and Docker Compose: Part 2
-## Elastic Agent, Fleet, and Elastic APM
 
-This repo is in reference to the blog [Getting Started with the Elastic Stack and Docker Compose: Part 2](https://www.elastic.co/blog/getting-started-with-the-elastic-stack-and-docker-compose-part-2)
+This project demonstrates how to set up a user for each ELK service and store user credentials in keystores.
 
-You can read the first blog: [Getting Started with the Elastic Stack and Docker Compose](https://www.elastic.co/blog/getting-started-with-the-elastic-stack-and-docker-compose) or visit it's [GitHub repo](https://github.com/elkninja/elastic-stack-docker-part-one)
+Brief video explanation: https://github.com/evermight/elk-docker-compose-keystore
 
-Please feel free to ask any questions via issues [here](https://github.com/elkninja/elastic-stack-docker-part-two/issues), our [Community Slack](https://ela.st/slack), or over in our [Discuss Forums](https://discuss.elastic.co/).
+Full video explanation: TBD
 
-Pull Requests welcome :)
+# GET STARTED
 
- 
-## Resources:
-### Fleet/Agent
+1. Type `docker-compose up --build -d`.
+2. Go to kibana at `https://<ip address of server>:5601`
+3. Login with `elastic` and the password found in the `.env` file.
+4. Go to Fleet > Settings.
+5. Run the `./get-cert-details.sh` to determine your CA finger print and your CA.
+6. Populate the information as shown in this screenshot: ![fleet settings](screenshot-fleet-settings.png "Fleet Settings")
+7. Press save.
+8. Ensure everything is operational: metricbeat, filebeat, logstash, APM.
 
-Overview: https://www.elastic.co/guide/en/fleet/current/fleet-overview.html
+## Optional Steps
 
-Policy Creation, No UI: https://www.elastic.co/guide/en/fleet/current/create-a-policy-no-ui.html
+You can now remove any secrets from your `.env` file and also change the password for the `elastic` user.
 
-Adding Fleet On-Prem: https://www.elastic.co/guide/en/fleet/current/add-fleet-server-on-prem.html
-
-Agent in a Container: https://www.elastic.co/guide/en/fleet/current/elastic-agent-container.html
-
-Air Gapped: https://www.elastic.co/guide/en/fleet/current/air-gapped.html
-
-Secure Fleet: https://www.elastic.co/guide/en/fleet/current/secure-connections.html
-
-### APM:
-
-APM:
-https://www.elastic.co/guide/en/apm/guide/current/upgrade-to-apm-integration.html
-
-On Prem: https://www.elastic.co/guide/en/apm/guide/current/apm-integration-upgrade-steps.html
-
-Fleet-Managed: https://www.elastic.co/guide/en/fleet/8.8/install-fleet-managed-elastic-agent.html
-
-Queue Full Error:
-https://www.elastic.co/guide/en/apm/server/current/common-problems.html#queue-full
+1. Go to your `.env` file and replace `ELASTIC_PASSWORD, APM_PASS, ENCRYPTION_KEY` with fake data.  Do NOT delete these variables because I haven't done enough "null" and "empty" checks in my bash scripts.  The more important point is that these variables are no longer used.
+2. Go to your `docker-compose.yml` file and delete the line `ELASTICSEARCH_PASSWORD` from the environment of the `es01` container.  It's not used any more.
+3. Go to your `docker-compose.yml` file and delete the lines `KIBANA_*` from the environment of the `fleet-server` container.  It's not used any more.
+4. Go to Kibana Stack Management > Users and change the password for the `elastic` user so that no one can use it again.
+You can change the password for `elastic` under Stack Management.
