@@ -10,7 +10,7 @@ do
     esac
 done
 
-if [ -f /usr/share/elastic-agent/keystore/elastic-agent.keystore ]; then
+if [ -f /usr/share/elastic-agent/keystore/elastic-agent.initialized ]; then
   echo "All done! Keystore exists."
   sleep 10;
   exit;
